@@ -1,0 +1,15 @@
+{
+  "name": "math-bot",
+  "version": "1.0.0",
+  "description": "telegram math bot",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aravind KR",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "node-telegram-bot-api": "^0.30.0"
+  }
+}
