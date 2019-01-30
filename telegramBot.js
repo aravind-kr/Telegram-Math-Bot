@@ -100,7 +100,7 @@ module.exports = class TelegramBot {
 
             let messageText = msg.text
 
-            console.log(chatId, messageText)
+            console.log(' >> ', chatId, messageText)
 
             if (chatId && messageText) {
                 if (!this._sessionIds.has(chatId)) {
@@ -112,6 +112,8 @@ module.exports = class TelegramBot {
                 })
 
                 apiaiRequest.on('response', response => {
+                    console.log(' => ', JSON.stringify(response, null, 2))
+
                     if (TelegramBot.isDefined(response.result)) {
                         let responseText = response.result.fulfillment.speech
                         let responseData = response.result.fulfillment.data
