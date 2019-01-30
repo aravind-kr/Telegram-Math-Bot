@@ -20,7 +20,7 @@ const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 var baseUrl = "";
 if (APP_NAME) {
   // Heroku case
-  baseUrl = `https://${APP_NAME}.herokuapp.com/`;
+  baseUrl = `https://${APP_NAME}.herokuapp.com`;
 }
 
 // console timestamps
