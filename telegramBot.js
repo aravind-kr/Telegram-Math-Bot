@@ -126,7 +126,16 @@ module.exports = class TelegramBot {
                             MathHelper(resolvedQuery, result => {
                                 console.log(
                                     'result => ',
-                                    JSON.stringify(result, null, 2)
+                                    result.expressive_answer
+                                )
+                                this.reply({
+                                    chat_id: chatId,
+                                    text: result.expressive_answer,
+                                })
+                                TelegramBot.createResponse(
+                                    res,
+                                    200,
+                                    'Message processed'
                                 )
                             })
                         } else if (
