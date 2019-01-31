@@ -9,6 +9,8 @@ const bodyParser = require('body-parser')
 const TelegramBot = require('./telegramBot')
 const TelegramBotConfig = require('./telegramBotConfig')
 
+const MathHelper = require('./src');
+
 const REST_PORT = process.env.PORT || 5000
 const DEV_CONFIG = process.env.DEVELOPMENT_CONFIG == 'true'
 

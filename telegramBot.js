@@ -117,8 +117,12 @@ module.exports = class TelegramBot {
                     if (TelegramBot.isDefined(response.result)) {
                         let responseText = response.result.fulfillment.speech
                         let responseData = response.result.fulfillment.data
-
-                        if (
+                        let { intentName } = response.result.metadata 
+                        if ( intentName === 'Small-Tall.Math' ) {
+                            
+                            console.log("This is for Math intent");
+                            
+                        } else if (
                             TelegramBot.isDefined(responseData) &&
                             TelegramBot.isDefined(responseData.telegram)
                         ) {
