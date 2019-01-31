@@ -7,6 +7,8 @@ const NER = require('./config/ner.js')
 let _process = require('./utils')
 // const unit = require('css-get-unit');
 
+const logger = console;
+
 String.prototype.replaceAll = function(search, replacement) {
     var target = this
     return target.replace(new RegExp(search, 'g'), replacement)
