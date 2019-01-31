@@ -4,7 +4,7 @@ const apiai = require('apiai')
 const uuid = require('node-uuid')
 const request = require('request')
 
-const MathHelper = require('./src');
+const MathHelper = require('./src')
 
 module.exports = class TelegramBot {
     get apiaiService() {
@@ -113,21 +113,22 @@ module.exports = class TelegramBot {
                     sessionId: this._sessionIds.get(chatId),
                 })
 
-                apiaiRequest.on('response', async (response) => {
+                apiaiRequest.on('response', response => {
                     console.log(' => ', JSON.stringify(response, null, 2))
 
                     if (TelegramBot.isDefined(response.result)) {
                         let responseText = response.result.fulfillment.speech
                         let responseData = response.result.fulfillment.data
-                        let { intentName } = response.result.metadata 
+                        let { intentName } = response.result.metadata
                         let { resolvedQuery } = response.result
-                        if ( intentName === 'Small-Tall.Math' ) {
-
-                            console.log("This is for Math intent");
-                            let result = await MathHelper(resolvedQuery);
-
-                            console.log('result => ', JSON.stringify(result, null, 2))
-                            
+                        if (intentName === 'Small-Tall.Math') {
+                            console.log('This is for Math intent')
+                            MathHelper(resolvedQuery, result => {
+                                console.log(
+                                    'result => ',
+                                    JSON.stringify(result, null, 2)
+                                )
+                            })
                         } else if (
                             TelegramBot.isDefined(responseData) &&
                             TelegramBot.isDefined(responseData.telegram)
