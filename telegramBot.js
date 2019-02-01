@@ -107,9 +107,22 @@ module.exports = class TelegramBot {
                 messageText = emojiStrip(msg.text)
             }
 
-            console.log(' >> ', chatId, messageText,msg.animation, msg.sticker, msg.voice)
+            console.log(
+                ' >> ',
+                chatId,
+                messageText,
+                msg.animation,
+                msg.sticker,
+                msg.voice,
+                !messageText.length ||
+                    'animation' in msg ||
+                    'voice' in msg ||
+                    'sticker' in msg
+            )
 
             if (chatId && messageText && messageText.length) {
+                console.log('comes here');
+                
                 if (!this._sessionIds.has(chatId)) {
                     this._sessionIds.set(chatId, uuid.v1())
                 }
