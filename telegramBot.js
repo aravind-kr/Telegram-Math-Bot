@@ -107,21 +107,9 @@ module.exports = class TelegramBot {
                 messageText = emojiStrip(msg.text)
             }
 
-            console.log(
-                ' >> ',
-                chatId,
-                messageText,
-                msg.animation,
-                msg.sticker,
-                msg.voice
-            )
-            console.log('sticker' in msg)
-            console.log('voice' in msg)
-            console.log('animation' in msg)
-            console.log(messageText.length)
+            console.log(' >> ', chatId, messageText)
 
             if (chatId && messageText && messageText.length) {
-                console.log('comes here')
 
                 if (!this._sessionIds.has(chatId)) {
                     this._sessionIds.set(chatId, uuid.v1())
@@ -210,7 +198,7 @@ module.exports = class TelegramBot {
                 })
                 apiaiRequest.end()
             } else if (
-                !messageText.length ||
+                (messageText && !messageText.length) ||
                 'animation' in msg ||
                 'voice' in msg ||
                 'sticker' in msg
