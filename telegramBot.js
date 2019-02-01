@@ -103,7 +103,7 @@ module.exports = class TelegramBot {
 
             let messageText = emojiStrip(msg.text)
 
-            console.log(' >> ', chatId, messageText)
+            console.log(' >> ', chatId, messageText, JSON.stringify(updateObject.message, null, 4))
 
             if (chatId && messageText && messageText.length ) {
                 if (!this._sessionIds.has(chatId)) {
