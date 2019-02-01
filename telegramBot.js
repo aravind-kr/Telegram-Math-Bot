@@ -3,7 +3,7 @@
 const apiai = require('apiai')
 const uuid = require('node-uuid')
 const request = require('request')
-const emojiStrip = require('emoji-strip') 
+const emojiStrip = require('emoji-strip')
 
 const MathHelper = require('./src')
 
@@ -91,8 +91,7 @@ module.exports = class TelegramBot {
         }
 
         let updateObject = req.body
-        console.log(updateObject.message);
-        
+
         if (updateObject && updateObject.message) {
             let msg = updateObject.message
 
@@ -102,14 +101,15 @@ module.exports = class TelegramBot {
                 chatId = msg.chat.id
             }
 
-            console.log('comes here');
+            let messageText
             
+            if (msg.text) {
+                messageText = emojiStrip(msg.text)
+            }
 
-            let messageText = emojiStrip(msg.text)
+            console.log(' >> ', chatId, messageText)
 
-            console.log(' >> ', chatId, messageText, JSON.stringify(updateObject.message, null, 4))
-
-            if (chatId && messageText && messageText.length ) {
+            if (chatId && messageText && messageText.length) {
                 if (!this._sessionIds.has(chatId)) {
                     this._sessionIds.set(chatId, uuid.v1())
                 }
@@ -196,16 +196,17 @@ module.exports = class TelegramBot {
                     )
                 })
                 apiaiRequest.end()
-            } else if ( !messageText.length || updateObject.message.animation || updateObject.message.voice || updateObject.message.sticker ) {
+            } else if (
+                !messageText.length ||
+                updateObject.message.animation ||
+                updateObject.message.voice ||
+                updateObject.message.sticker
+            ) {
                 this.reply({
                     chat_id: chatId,
-                    text: "Sorry, I can only respond to a text query.",
+                    text: 'Sorry, I can only respond to a text query.',
                 })
-                TelegramBot.createResponse(
-                    res,
-                    200,
-                    'Message processed'
-                )
+                TelegramBot.createResponse(res, 200, 'Message processed')
             } else {
                 console.log('Empty message')
                 return TelegramBot.createResponse(res, 200, 'Empty message')
