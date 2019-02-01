@@ -113,16 +113,16 @@ module.exports = class TelegramBot {
                 messageText,
                 msg.animation,
                 msg.sticker,
-                msg.voice,
-                messageText.length == 0 ||
-                    'animation' in msg ||
-                    'voice' in msg ||
-                    'sticker' in msg
+                msg.voice
             )
+            console.log('sticker' in msg)
+            console.log('voice' in msg)
+            console.log('animation' in msg)
+            console.log(messageText.length == 0)
 
             if (chatId && messageText && messageText.length) {
-                console.log('comes here');
-                
+                console.log('comes here')
+
                 if (!this._sessionIds.has(chatId)) {
                     this._sessionIds.set(chatId, uuid.v1())
                 }
