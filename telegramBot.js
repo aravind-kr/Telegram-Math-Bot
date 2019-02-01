@@ -198,9 +198,9 @@ module.exports = class TelegramBot {
                 apiaiRequest.end()
             } else if (
                 !messageText.length ||
-                msg.animation ||
-                msg.voice ||
-                msg.sticker
+                'animation' in msg ||
+                'voice' in msg ||
+                'sticker' in msg
             ) {
                 this.reply({
                     chat_id: chatId,
