@@ -118,7 +118,7 @@ module.exports = class TelegramBot {
             console.log('sticker' in msg)
             console.log('voice' in msg)
             console.log('animation' in msg)
-            console.log(messageText.length == 0)
+            console.log(messageText.length)
 
             if (chatId && messageText && messageText.length) {
                 console.log('comes here')
