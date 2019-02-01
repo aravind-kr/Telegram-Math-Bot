@@ -102,12 +102,12 @@ module.exports = class TelegramBot {
             }
 
             let messageText
-            
+
             if (msg.text) {
                 messageText = emojiStrip(msg.text)
             }
 
-            console.log(' >> ', chatId, messageText)
+            console.log(' >> ', chatId, messageText,msg.animation, msg.sticker, msg.voice)
 
             if (chatId && messageText && messageText.length) {
                 if (!this._sessionIds.has(chatId)) {
@@ -198,9 +198,9 @@ module.exports = class TelegramBot {
                 apiaiRequest.end()
             } else if (
                 !messageText.length ||
-                updateObject.message.animation ||
-                updateObject.message.voice ||
-                updateObject.message.sticker
+                msg.animation ||
+                msg.voice ||
+                msg.sticker
             ) {
                 this.reply({
                     chat_id: chatId,
