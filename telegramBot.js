@@ -91,7 +91,8 @@ module.exports = class TelegramBot {
         }
 
         let updateObject = req.body
-
+        console.log(updateObject.message);
+        
         if (updateObject && updateObject.message) {
             let msg = updateObject.message
 
@@ -100,6 +101,9 @@ module.exports = class TelegramBot {
             if (msg.chat) {
                 chatId = msg.chat.id
             }
+
+            console.log('comes here');
+            
 
             let messageText = emojiStrip(msg.text)
 
