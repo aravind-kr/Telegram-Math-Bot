@@ -114,7 +114,7 @@ module.exports = class TelegramBot {
                 msg.animation,
                 msg.sticker,
                 msg.voice,
-                !messageText.length ||
+                messageText.length == 0 ||
                     'animation' in msg ||
                     'voice' in msg ||
                     'sticker' in msg
