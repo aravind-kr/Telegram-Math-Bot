@@ -3,6 +3,7 @@
 const apiai = require('apiai')
 const uuid = require('node-uuid')
 const request = require('request')
+const emojiStrip = require('emoji-strip') 
 
 const MathHelper = require('./src')
 
@@ -100,11 +101,11 @@ module.exports = class TelegramBot {
                 chatId = msg.chat.id
             }
 
-            let messageText = msg.text
+            let messageText = emojiStrip(msg.text)
 
             console.log(' >> ', chatId, messageText)
 
-            if (chatId && messageText) {
+            if (chatId && messageText && messageText.length ) {
                 if (!this._sessionIds.has(chatId)) {
                     this._sessionIds.set(chatId, uuid.v1())
                 }
@@ -191,6 +192,16 @@ module.exports = class TelegramBot {
                     )
                 })
                 apiaiRequest.end()
+            } else if ( !messageText.length || updateObject.message.animation || updateObject.message.voice || updateObject.message.sticker ) {
+                this.reply({
+                    chat_id: chatId,
+                    text: "Sorry, I can only respond to a text query.",
+                })
+                TelegramBot.createResponse(
+                    res,
+                    200,
+                    'Message processed'
+                )
             } else {
                 console.log('Empty message')
                 return TelegramBot.createResponse(res, 200, 'Empty message')
