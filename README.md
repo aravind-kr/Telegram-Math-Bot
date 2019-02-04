@@ -1,6 +1,6 @@
 # Telegram-Math-Bot
 
-This Repository contains the code for the `math_solver_bot`. It can be found [here](t.me/math_solver_bot).
+This Repository contains the code for the `math_solver_bot`. It can be found [here](http://t.me/math_solver_bot).
 
 The Telegram Math Bot is a general purpose conversational bot, which can used to solve mathematical queries like:
 
