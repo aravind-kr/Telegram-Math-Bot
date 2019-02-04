@@ -39,6 +39,7 @@ var trainingData = [
     //percentage of 
     { text: 'percentage of', replace_value: '%', entityType: 'operator', uid: 'percent' },
     { text: '% of', replace_value: '%', entityType: 'operator', uid: 'percent' },
+    { text: 'percent of', replace_value: '%', entityType: 'operator', uid: 'percent' },
     // square root
     { text: 'square root of', replace_value: 'sqrt(', entityType: 'operator', uid: 'root' },
     { text: 'cube root of', replace_value: 'cbrt(', entityType: 'operator', uid: 'root' },
